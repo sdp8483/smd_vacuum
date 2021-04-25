@@ -74,7 +74,7 @@ U 1 1 60855836
 P 7550 3450
 F 0 "D4" H 7550 3550 50  0000 C CNN
 F 1 "LED" H 7550 3350 50  0000 C CNN
-F 2 "" H 7550 3450 50  0001 C CNN
+F 2 "Connector_JST:JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical" H 7550 3450 50  0001 C CNN
 F 3 "~" H 7550 3450 50  0001 C CNN
 	1    7550 3450
 	0    -1   -1   0   
@@ -99,17 +99,6 @@ F 1 "GND" H 8300 3300 50  0000 C CNN
 F 2 "" H 8300 3450 50  0001 C CNN
 F 3 "" H 8300 3450 50  0001 C CNN
 	1    8300 3450
-	1    0    0    -1  
-$EndComp
-$Comp
-L Motor:Motor_DC M1
-U 1 1 60859C35
-P 8600 2550
-F 0 "M1" H 8700 2650 50  0000 L CNN
-F 1 "Motor_DC" H 8700 2350 50  0000 L TNN
-F 2 "pl_TerminalBlock:WJ127-5.0-2P" H 8600 2460 50  0001 C CNN
-F 3 "~" H 8600 2460 50  0001 C CNN
-	1    8600 2550
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -217,7 +206,7 @@ U 1 1 6088549F
 P 5400 5450
 F 0 "D3" H 5400 5550 50  0000 C CNN
 F 1 "LED" H 5400 5350 50  0000 C CNN
-F 2 "" H 5400 5450 50  0001 C CNN
+F 2 "Connector_JST:JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical" H 5400 5450 50  0001 C CNN
 F 3 "~" H 5400 5450 50  0001 C CNN
 	1    5400 5450
 	1    0    0    -1  
@@ -341,7 +330,7 @@ F 1 "L" V 8725 4900 50  0000 C CNN
 F 2 "pl_TerminalBlock:WJ127-5.0-2P" H 8650 4900 50  0001 C CNN
 F 3 "~" H 8650 4900 50  0001 C CNN
 	1    8650 4900
-	1    0    0    -1  
+	1    0    0    1   
 $EndComp
 Wire Wire Line
 	6500 3800 6500 4050
@@ -606,7 +595,7 @@ U 1 1 60A53593
 P 4000 2250
 F 0 "D1" H 4000 2350 50  0000 C CNN
 F 1 "LED" H 4000 2150 50  0000 C CNN
-F 2 "" H 4000 2250 50  0001 C CNN
+F 2 "Connector_JST:JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical" H 4000 2250 50  0001 C CNN
 F 3 "~" H 4000 2250 50  0001 C CNN
 	1    4000 2250
 	0    -1   -1   0   
@@ -688,4 +677,59 @@ Wire Wire Line
 	2000 7000 2000 7200
 Wire Wire Line
 	1500 7000 1500 7200
+$Comp
+L Motor:Motor_DC M1
+U 1 1 60859C35
+P 8600 2550
+F 0 "M1" H 8700 2650 50  0000 L CNN
+F 1 "Motor_DC" H 8700 2350 50  0000 L TNN
+F 2 "pl_TerminalBlock:WJ127-5.0-2P" H 8600 2460 50  0001 C CNN
+F 3 "~" H 8600 2460 50  0001 C CNN
+	1    8600 2550
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole H1
+U 1 1 60B08B99
+P 1500 5000
+F 0 "H1" H 1500 5200 50  0000 C CNN
+F 1 "MountingHole" H 1500 5125 50  0000 C CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3" H 1500 5000 50  0001 C CNN
+F 3 "~" H 1500 5000 50  0001 C CNN
+	1    1500 5000
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole H3
+U 1 1 60B0987F
+P 2000 5000
+F 0 "H3" H 2000 5200 50  0000 C CNN
+F 1 "MountingHole" H 2000 5125 50  0000 C CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3" H 2000 5000 50  0001 C CNN
+F 3 "~" H 2000 5000 50  0001 C CNN
+	1    2000 5000
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole H4
+U 1 1 60B099EF
+P 2000 5500
+F 0 "H4" H 2000 5700 50  0000 C CNN
+F 1 "MountingHole" H 2000 5625 50  0000 C CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3" H 2000 5500 50  0001 C CNN
+F 3 "~" H 2000 5500 50  0001 C CNN
+	1    2000 5500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole H2
+U 1 1 60B09C6F
+P 1500 5500
+F 0 "H2" H 1500 5700 50  0000 C CNN
+F 1 "MountingHole" H 1500 5625 50  0000 C CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3" H 1500 5500 50  0001 C CNN
+F 3 "~" H 1500 5500 50  0001 C CNN
+	1    1500 5500
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
