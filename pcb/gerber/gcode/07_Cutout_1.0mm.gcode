@@ -10,7 +10,7 @@ G00 Z2.0000
 (Block-name: block)
 (Block-expand: 1)
 (Block-enable: 1)
-M03 S800
+M03 S300
 G4 P1
 G00 X-73.5250Y-5.5000
 G01 Z-0.5000
