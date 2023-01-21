@@ -1,0 +1,6 @@
+[submodule "pump_soft_start/firmware/easy-pdk"]
+	path = pump_soft_start/firmware/easy-pdk
+	url = https://github.com/free-pdk/easy-pdk-includes.git
+[submodule "pump_soft_start/firmware/pdk"]
+	path = pump_soft_start/firmware/pdk
+	url = https://github.com/free-pdk/pdk-includes.git

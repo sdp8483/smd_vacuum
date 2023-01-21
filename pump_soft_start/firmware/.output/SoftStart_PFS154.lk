@@ -1,0 +1,10 @@
+-muwx
+-i .output/SoftStart_PFS154.ihx
+-b HOME = 0x0022
+-b DATA = 0x0002
+-k /usr/bin/../share/sdcc/lib/pdk14
+-k /usr/share/sdcc/lib/pdk14
+-l pdk14
+.build/main.rel
+
+-e
