@@ -54,7 +54,7 @@ Symbol Table
     __pwmg2dth                                                  =  00002E G
     __pwmg2dtl                                                  =  00002F G
     __pwmg2s                                                    =  00002D G
-  F __sdcc_external_startup                                        0000DA GR
+  F __sdcc_external_startup                                        0000DC GR
   A __sdcc_init_data                                               000000 R
   7 __sdcc_program_startup                                         000000 R
     __sp                                                        =  000002 G
@@ -104,7 +104,7 @@ Area Table
    C PREG                                       size      0   flags    8
    D PREG2                                      size      2   flags    8
    E HEADER3                                    size     10   flags    8
-   F CODE                                       size     F4   flags    0
+   F CODE                                       size     F6   flags    0
   10 CONST                                      size      0   flags    0
   11 CABS                                       size      0   flags    8
 

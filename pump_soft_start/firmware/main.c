@@ -1,8 +1,10 @@
-/*
-  FadeLED
-
-  Uses PWM to fade an LED in and out, repeatedly.
-*/
+/* Vacuum Pump Soft Start
+ *  Use PWM to soft start a small DC vacuum pump to prevent current 
+ *  surge that browns out the rest of the circuit.
+ * 
+ *  PA5 is an input from an opto that is triggered by the output of a 555 timer
+ *  PA4 is an PWM output to a N-Channel Mosfet
+ */
 
 #include <stdint.h>
 #include <pdk/device.h>
@@ -14,12 +16,13 @@
 // input is active low, so define helper for better readability below
 #define isInputActive()       !(PA & (1 << INPUT_PIN))
 
+#define PWM_MIN               128   /* PWM duty cycle will start at this value */
 #define PWM_MAX               255   /* 11-bit PWM peripheral */
 #define PWM_OUTPUT_PIN        4     /* PWM output pin is PA4/PG1PWM */
 
-// Targeting a 3 second soft startup
-#define PWM_RAMP_DELAY_ms     59    /* delay in call to increase PWM duty cycle */
-#define PWM_INC_VALUE         5     /* value to increase PWM duty cycle by */
+// Targeting a <1 second soft startup
+#define PWM_RAMP_DELAY_ms     8     /* delay in call to increase PWM duty cycle */
+#define PWM_INC_VALUE         4     /* value to increase PWM duty cycle by */
 
 // Main program
 void main() {
@@ -37,6 +40,7 @@ void main() {
   PWMG1DTH = 0x00;
   PWMG1C = (uint8_t)(PWMG1C_ENABLE | PWMG1C_OUT_PA4 | PWMG1C_CLK_IHRC);
   PWMG1S = 0x00;                    /* No pre-scaler */
+  // PWMG1S = (uint8_t)(PWMG1S_PRESCALE_DIV16 | PWMG1S_SCALE_DIV16);
 
   // Main processing loop
   while (1) {
@@ -44,7 +48,7 @@ void main() {
     if (isInputActive()) {
       uint16_t pwmValue;
       // ramp up PWM output
-      for (pwmValue = 0; pwmValue < PWM_MAX; pwmValue += PWM_INC_VALUE) {
+      for (pwmValue = PWM_MIN; pwmValue < PWM_MAX; pwmValue += PWM_INC_VALUE) {
         PWMG1DTL = pwmValue << 5;     /* Set PWM duty value (lower 3 bits) */
         PWMG1DTH = pwmValue >> 3;     /* (upper 8 bits) */
         _delay_ms(PWM_RAMP_DELAY_ms);

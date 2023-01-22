@@ -265,55 +265,56 @@ __delay_loop_32:
 00101$:
 ;	delay.h: 95: }
 	ret
-;	main.c: 25: void main() {
+;	main.c: 26: void main() {
 ;	-----------------------------------------
 ;	 function main
 ;	-----------------------------------------
 _main:
-;	main.c: 28: PAC &= ~(1 << INPUT_PIN);         /* Set input as input (all pins are input by default) */
+;	main.c: 29: PAC &= ~(1 << INPUT_PIN);         /* Set input as input (all pins are input by default) */
 	set0.io	__pac, #5
-;	main.c: 29: PADIER |= (1 << INPUT_PIN);       /* input as digital input */
+;	main.c: 30: PADIER |= (1 << INPUT_PIN);       /* input as digital input */
 	set1.io	__padier, #5
-;	main.c: 30: PAPH |= (1 << INPUT_PIN);         /* Enable pull-up resistor on input */
+;	main.c: 31: PAPH |= (1 << INPUT_PIN);         /* Enable pull-up resistor on input */
 	set1.io	__paph, #5
-;	main.c: 31: PAC |= (1 << PWM_OUTPUT_PIN);     /* Set PWM_OUPUT_PIN as output (all pins are input by default) */
+;	main.c: 32: PAC |= (1 << PWM_OUTPUT_PIN);     /* Set PWM_OUPUT_PIN as output (all pins are input by default) */
 	set1.io	__pac, #4
-;	main.c: 34: PWMG1CUBL = PWM_MAX << 5;         /* Set the PWM upper bound (lower 3 bits) */
+;	main.c: 35: PWMG1CUBL = PWM_MAX << 5;         /* Set the PWM upper bound (lower 3 bits) */
 	mov	a, #0xe0
 	mov.io	__pwmg1cubl, a
-;	main.c: 35: PWMG1CUBH = PWM_MAX >> 3;         /* (upper 5 bits) */
+;	main.c: 36: PWMG1CUBH = PWM_MAX >> 3;         /* (upper 5 bits) */
 	mov	a, #0x1f
 	mov.io	__pwmg1cubh, a
-;	main.c: 36: PWMG1DTL = 0x00;                  /* Clear the PWM duty value */
+;	main.c: 37: PWMG1DTL = 0x00;                  /* Clear the PWM duty value */
 	mov	a, #0x00
 	mov.io	__pwmg1dtl, a
-;	main.c: 37: PWMG1DTH = 0x00;
+;	main.c: 38: PWMG1DTH = 0x00;
 	mov	a, #0x00
 	mov.io	__pwmg1dth, a
-;	main.c: 38: PWMG1C = (uint8_t)(PWMG1C_ENABLE | PWMG1C_OUT_PA4 | PWMG1C_CLK_IHRC);
+;	main.c: 39: PWMG1C = (uint8_t)(PWMG1C_ENABLE | PWMG1C_OUT_PA4 | PWMG1C_CLK_IHRC);
 	mov	a, #0x87
 	mov.io	__pwmg1c, a
-;	main.c: 39: PWMG1S = 0x00;                    /* No pre-scaler */
+;	main.c: 40: PWMG1S = 0x00;                    /* No pre-scaler */
 	mov	a, #0x00
 	mov.io	__pwmg1s, a
-;	main.c: 42: while (1) {
+;	main.c: 44: while (1) {
 00109$:
-;	main.c: 44: if (isInputActive()) {
+;	main.c: 46: if (isInputActive()) {
 	mov.io	a, __pa
 	and	a, #0x20
 	ceqsn	a, #0x00
 	goto	00106$
-;	main.c: 47: for (pwmValue = 0; pwmValue < PWM_MAX; pwmValue += PWM_INC_VALUE) {
-	clear	_main_sloc0_1_0+0
+;	main.c: 49: for (pwmValue = PWM_MIN; pwmValue < PWM_MAX; pwmValue += PWM_INC_VALUE) {
+	mov	a, #0x80
+	mov	_main_sloc0_1_0+0, a
 	clear	_main_sloc0_1_0+1
 00111$:
-;	main.c: 48: PWMG1DTL = pwmValue << 5;     /* Set PWM duty value (lower 3 bits) */
+;	main.c: 50: PWMG1DTL = pwmValue << 5;     /* Set PWM duty value (lower 3 bits) */
 	mov	a, _main_sloc0_1_0+0
 	swap	a
 	and	a, #0xf0
 	sl	a
 	mov.io	__pwmg1dtl, a
-;	main.c: 49: PWMG1DTH = pwmValue >> 3;     /* (upper 8 bits) */
+;	main.c: 51: PWMG1DTH = pwmValue >> 3;     /* (upper 8 bits) */
 	mov	a, _main_sloc0_1_0+1
 	mov	p, a
 	mov	a, _main_sloc0_1_0+0
@@ -324,15 +325,15 @@ _main:
 	sr	p
 	src	a
 	mov.io	__pwmg1dth, a
-;	main.c: 50: _delay_ms(PWM_RAMP_DELAY_ms);
-	mov	a, #0xcd
+;	main.c: 52: _delay_ms(PWM_RAMP_DELAY_ms);
+	mov	a, #0xe6
 	mov	__delay_loop_16_PARM_1+0, a
-	mov	a, #0x1c
+	mov	a, #0x03
 	mov	__delay_loop_16_PARM_1+1, a
 	call	__delay_loop_16
-;	main.c: 47: for (pwmValue = 0; pwmValue < PWM_MAX; pwmValue += PWM_INC_VALUE) {
+;	main.c: 49: for (pwmValue = PWM_MIN; pwmValue < PWM_MAX; pwmValue += PWM_INC_VALUE) {
 	mov	a, _main_sloc0_1_0+0
-	add	a, #0x05
+	add	a, #0x04
 	mov	p, a
 	mov	a, _main_sloc0_1_0+1
 	addc	a
@@ -347,19 +348,19 @@ _main:
 	subc	a
 	t0sn.io	f, c
 	goto	00111$
-;	main.c: 54: PWMG1DTL = PWM_MAX << 5;     /* Set PWM duty value (lower 3 bits) */
+;	main.c: 56: PWMG1DTL = PWM_MAX << 5;     /* Set PWM duty value (lower 3 bits) */
 	mov	a, #0xe0
 	mov.io	__pwmg1dtl, a
-;	main.c: 55: PWMG1DTH = PWM_MAX >> 3;     /* (upper 8 bits) */
+;	main.c: 57: PWMG1DTH = PWM_MAX >> 3;     /* (upper 8 bits) */
 	mov	a, #0x1f
 	mov.io	__pwmg1dth, a
-;	main.c: 56: while(isInputActive()) {
+;	main.c: 58: while(isInputActive()) {
 00102$:
 	mov.io	a, __pa
 	and	a, #0x20
 	ceqsn	a, #0x00
 	goto	00109$
-;	main.c: 57: _delay_ms(1000);
+;	main.c: 59: _delay_ms(1000);
 	mov	a, #0x84
 	mov	__delay_loop_32_PARM_1+0, a
 	mov	a, #0x45
@@ -370,30 +371,30 @@ _main:
 	call	__delay_loop_32
 	goto	00102$
 00106$:
-;	main.c: 61: PWMG1DTL = 0;                 /* Set PWM duty value (lower 3 bits) */
+;	main.c: 63: PWMG1DTL = 0;                 /* Set PWM duty value (lower 3 bits) */
 	mov	a, #0x00
 	mov.io	__pwmg1dtl, a
-;	main.c: 62: PWMG1DTH = 0;                 /* (upper 8 bits) */
+;	main.c: 64: PWMG1DTH = 0;                 /* (upper 8 bits) */
 	mov	a, #0x00
 	mov.io	__pwmg1dth, a
-;	main.c: 63: _delay_ms(50);                /* short delay for debounce */
+;	main.c: 65: _delay_ms(50);                /* short delay for debounce */
 	mov	a, #0x68
 	mov	__delay_loop_16_PARM_1+0, a
 	mov	a, #0x18
 	mov	__delay_loop_16_PARM_1+1, a
 	call	__delay_loop_16
 	goto	00109$
-;	main.c: 66: }
+;	main.c: 68: }
 	ret
-;	main.c: 69: unsigned char _sdcc_external_startup(void) {
+;	main.c: 71: unsigned char _sdcc_external_startup(void) {
 ;	-----------------------------------------
 ;	 function _sdcc_external_startup
 ;	-----------------------------------------
 __sdcc_external_startup:
-;	main.c: 74: AUTO_INIT_SYSCLOCK();
+;	main.c: 76: AUTO_INIT_SYSCLOCK();
 	mov	a, #0x1c
 	mov.io	__clkmd, a
-;	main.c: 79: AUTO_CALIBRATE_SYSCLOCK(TARGET_VDD_MV);
+;	main.c: 81: AUTO_CALIBRATE_SYSCLOCK(TARGET_VDD_MV);
 	and	a, #'R'                       
 	and	a, #'C'                       
 	and	a, #(1)            
@@ -401,11 +402,11 @@ __sdcc_external_startup:
 	and	a, #((1000000)>>8)  
 	and	a, #((1000000)>>16) 
 	and	a, #((1000000)>>24) 
-	and	a, #((4000))     
-	and	a, #((4000)>>8)  
+	and	a, #((5000))     
+	and	a, #((5000)>>8)  
 	and	a, #(0x0b)             
-;	main.c: 81: return 0;   // Return 0 to inform SDCC to continue with normal initialization.
-;	main.c: 82: }
+;	main.c: 83: return 0;   // Return 0 to inform SDCC to continue with normal initialization.
+;	main.c: 84: }
 	ret	#0x00
 	.area CODE
 	.area CONST

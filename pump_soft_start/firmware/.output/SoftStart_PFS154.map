@@ -101,8 +101,8 @@ Area                                    Addr        Size        Decimal Bytes (A
      00000038  s_GSFINAL                       
      00000039  __ilrcr                            main
      0000003A  s_CODE                          
-     000000F4  l_CODE                          
-     0000012E  s_CONST                         
+     000000F6  l_CODE                          
+     00000130  s_CONST                         
 ASxxxx Linker V03.00 + NoICE + sdld,  page 3.
 Hexadecimal  [32-Bits]
 
@@ -196,7 +196,7 @@ Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CODE                                0000003A    000000F4 =         244. bytes (REL,CON)
+CODE                                0000003A    000000F6 =         246. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
@@ -204,7 +204,7 @@ CODE                                0000003A    000000F4 =         244. bytes (R
      00000040  __delay_loop_16                    main
      00000050  __delay_loop_32                    main
      00000068  _main                              main
-     00000114  __sdcc_external_startup            main
+     00000116  __sdcc_external_startup            main
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 13.
 

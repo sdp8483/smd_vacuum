@@ -5,16 +5,18 @@
             "includePath": [
                 "${workspaceFolder}/**"
             ],
-            "defines": ["PFS154",
-                        "__SDCC_pdk14",
-                        "DEVICE=PFS154",
-                        "F_CPU = 1000000",
-                        "TARGET_VDD_MV = 4000",
-                        "TARGET_VDD = 4.0"],
+            "defines": [
+                "PFS154",
+                "__SDCC_pdk14",
+                "DEVICE=PFS154",
+                "F_CPU = 1000000",
+                "TARGET_VDD_MV = 4000",
+                "TARGET_VDD = 4.0"
+            ],
             "compilerPath": "/usr/bin/sdcc",
             "cStandard": "c11",
-            "cppStandard": "c++17"
-            // "intelliSenseMode": "linux-gcc-x64"
+            "cppStandard": "c++17",
+            "configurationProvider": "ms-vscode.makefile-tools"
         }
     ],
     "version": 4
